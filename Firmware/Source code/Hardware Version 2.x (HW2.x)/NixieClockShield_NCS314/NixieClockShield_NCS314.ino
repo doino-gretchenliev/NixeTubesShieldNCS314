@@ -582,7 +582,7 @@ void loop()
   DownButtonState = 0;
 #endif
 
-  p = playmusic(p);
+  // p = playmusic(p);
 
   if ((millis() - prevTime4FireWorks) > LEDsDelay)
   {
