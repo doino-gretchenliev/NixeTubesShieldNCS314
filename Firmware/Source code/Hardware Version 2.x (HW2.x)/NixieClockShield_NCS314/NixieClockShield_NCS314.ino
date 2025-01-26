@@ -249,7 +249,7 @@ byte dotPattern = B00000000; //bit mask for separeting dots (1 - on, 0 - off)
 
 #define DS1307_ADDRESS  0x68 //DS3231 
 #define RV_3028_ADDRESS 0x52 //RV-3028-C7
-uint8_t RTC_Address=DS1307_ADDRESS;
+uint8_t RTC_Address=RV_3028_ADDRESS;
 
 byte zero = 0x00; //workaround for issue #527
 int RTC_hours, RTC_minutes, RTC_seconds, RTC_day, RTC_month, RTC_year, RTC_day_of_week;
@@ -407,7 +407,7 @@ extern const int LEDsDelay;
 void setup()
 {
   Wire.begin();
-  //setRTCDateTime(23,40,00,25,7,15,1);
+  // setRTCDateTime(23,40,00,25,7,15,1);
 
   Serial.begin(115200);
 #if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
@@ -495,7 +495,7 @@ void setup()
   while (prevSeconds == RTC_seconds)
   {
     getRTCTime();
-    //Serial.println(RTC_seconds);
+    // Serial.println(RTC_seconds);
     if ((millis() - RTC_ReadingStartTime) > 3000)
     {
       Serial.println(F("Warning! RTC DON'T RESPOND!"));
