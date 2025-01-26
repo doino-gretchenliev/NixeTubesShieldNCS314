@@ -2,6 +2,7 @@
 //driver version 1.3
 //1 on register's output will turn on a digit 
 
+//v1.4 remove HV5222 logic
 //v1.3(HV5222 MOD fix)
 //v1.2(HV5222 MOD)
 //v1.2 SPI setup moved to driver's file
@@ -11,13 +12,8 @@
 
 void SPISetup()
 {
-  pinMode(RHV5222PIN, INPUT_PULLUP);
-  HV5222=!digitalRead(RHV5222PIN);
-  SPI.begin(); //
-
-  if (HV5222)
-    SPI.beginTransaction(SPISettings(2000000, LSBFIRST, SPI_MODE2));
-    else SPI.beginTransaction(SPISettings(2000000, MSBFIRST, SPI_MODE2));
+  SPI.begin(); 
+  SPI.beginTransaction(SPISettings(2000000, MSBFIRST, SPI_MODE2));
 }
 
 void TurnOffAllTubes()
@@ -77,19 +73,10 @@ void doIndication()
   if (UD) Var32|=UpperDotsMask;
     else Var32&=~UpperDotsMask;  
 
-  if (HV5222) 
-  {
-    SPI.transfer(Var32);
-    SPI.transfer(Var32>>8);
-    SPI.transfer(Var32>>16);
-    SPI.transfer(Var32>>24);
-  } else 
-  {
-    SPI.transfer(Var32>>24);
-    SPI.transfer(Var32>>16);
-    SPI.transfer(Var32>>8);
-    SPI.transfer(Var32);
-  }
+  SPI.transfer(Var32>>24);
+  SPI.transfer(Var32>>16);
+  SPI.transfer(Var32>>8);
+  SPI.transfer(Var32);
   
  //-------------------------------------------------------------------------
 
@@ -111,19 +98,10 @@ void doIndication()
   if (UD) Var32|=UpperDotsMask;
     else Var32&=~UpperDotsMask;  
      
-  if (HV5222) 
-  {
-    SPI.transfer(Var32);
-    SPI.transfer(Var32>>8);
-    SPI.transfer(Var32>>16);
-    SPI.transfer(Var32>>24);
-  } else
-  {
-    SPI.transfer(Var32>>24);
-    SPI.transfer(Var32>>16);
-    SPI.transfer(Var32>>8);
-    SPI.transfer(Var32);
-  }
+  SPI.transfer(Var32>>24);
+  SPI.transfer(Var32>>16);
+  SPI.transfer(Var32>>8);
+  SPI.transfer(Var32);
 
   digitalWrite(LEpin, HIGH);    
 //-------------------------------------------------------------------------
