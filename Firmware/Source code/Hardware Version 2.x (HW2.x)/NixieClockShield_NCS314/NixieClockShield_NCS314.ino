@@ -222,7 +222,7 @@ const byte pinTemp = 7;
 bool RTC_present;
 #define US_DateFormat 1
 #define EU_DateFormat 0
-//bool DateFormat=EU_DateFormat;
+bool DateFormat=EU_DateFormat;
 
 OneWire ds(pinTemp);
 bool TempPresent = false;
