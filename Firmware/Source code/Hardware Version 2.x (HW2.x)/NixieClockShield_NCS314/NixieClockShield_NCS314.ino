@@ -209,8 +209,8 @@ byte addr[8];
 int celsius, fahrenheit;
 
 const byte RedLedPin = 9; //MCU WDM output for red LEDs 9-g
-const byte GreenLedPin = 6; //MCU WDM output for green LEDs 6-b
-const byte BlueLedPin = 3; //MCU WDM output for blue LEDs 3-r
+const byte GreenLedPin = 3; //MCU WDM output for green LEDs 6-b
+const byte BlueLedPin = 6; //MCU WDM output for blue LEDs 3-r
 const byte pinSet = A0;
 const byte pinUp = A2;
 const byte pinDown = A1;
